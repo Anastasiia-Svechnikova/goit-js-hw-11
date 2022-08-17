@@ -1,4 +1,4 @@
-import './css/styles.css';
+// import './css/styles.css';
 import Notiflix from 'notiflix';
 import axios from 'axios';
 import { getImages } from './fetchImg';
@@ -13,10 +13,13 @@ function onFormSubmit(e) {
   e.preventDefault();
   const query = e.target.elements.searchQuery.value;
   if (!query) {
+    refs.gallery.innerHTML = '';
     Notiflix.Notify.failure('Enter the keyword, please!');
+    document.body.classList.add('intro');
     return;
   }
   refs.gallery.innerHTML = '';
+
   getImages(query).then(data => {
     if (!data.hits.length) {
       Notiflix.Notify.failure(
@@ -61,5 +64,6 @@ function renderImages(arr) {
 </div>`
     )
     .join('');
+  document.body.classList.remove('intro');
   refs.gallery.insertAdjacentHTML('afterbegin', markup);
 }
