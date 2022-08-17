@@ -28,11 +28,12 @@ async function onFormSubmit(e) {
   }
   refs.gallery.innerHTML = '';
   page = 1;
-
+  refs.loadMoreBtn.classList.add('hidden');
   try {
     const data = await getImages(query);
 
     if (!data.hits.length) {
+      document.body.classList.add('intro');
       Notiflix.Notify.failure(
         'Sorry, there are no images matching your search query. Please try again.'
       );
