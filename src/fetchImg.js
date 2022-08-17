@@ -13,5 +13,5 @@ export async function getImages(query) {
   });
 
   const result = await axios.get(`${URL}?${params}`);
-  console.log(result.data);
+  return result.data;
 }
