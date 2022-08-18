@@ -50,6 +50,9 @@ async function onFormSubmit(e) {
     }
     if (page * 40 > data.totalHits) {
       refs.loadMoreBtn.classList.add('hidden');
+      Notiflix.Notify.info(
+        "We're sorry, but you've reached the end of search results."
+      );
     }
   } catch (error) {
     console.log(error);
@@ -65,6 +68,9 @@ async function onLoadMoreBtnClick() {
     renderGallery(data);
     if (page * 40 > data.totalHits) {
       refs.loadMoreBtn.classList.add('hidden');
+      Notiflix.Notify.info(
+        "We're sorry, but you've reached the end of search results."
+      );
     }
   } catch (error) {
     console.log(error);

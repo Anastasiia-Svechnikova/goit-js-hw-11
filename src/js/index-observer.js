@@ -62,7 +62,13 @@ async function updateGallery(entries) {
     if (entries[0].isIntersecting) {
       page += 1;
       const data = await getImages(query, page);
+
       renderGallery(data);
+      if ((page - 1) * 40 > data.totalHits) {
+        Notiflix.Notify.info(
+          "We're sorry, but you've reached the end of search results."
+        );
+      }
     }
   } catch (error) {
     console.log(error);
